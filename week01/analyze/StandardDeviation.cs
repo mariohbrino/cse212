@@ -7,9 +7,9 @@
 public static class StandardDeviation {
     public static void Run() {
         var numbers = new[] { 600, 470, 170, 430, 300 };
-        Console.WriteLine(StandardDeviation1(numbers)); // Should be 147.322 
-        Console.WriteLine(StandardDeviation2(numbers)); // Should be 147.322 
-        Console.WriteLine(StandardDeviation3(numbers)); // Should be 147.322 
+        Console.WriteLine(StandardDeviation1(numbers)); // Should be 147.322, Big O => O(n)
+        Console.WriteLine(StandardDeviation2(numbers)); // Should be 147.322, Big O => O(n^2)
+        Console.WriteLine(StandardDeviation3(numbers)); // Should be 147.322, Big O => O(n)
     }
 
     private static double StandardDeviation1(int[] numbers) {
