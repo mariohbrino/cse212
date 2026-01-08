@@ -7,9 +7,9 @@ public static class Algorithms {
         Console.WriteLine("{0,15}{0,15}{0,15}{0,15}{0,15}{0,15}{0,15}", "----------");
 
         for (int n = 0; n < 15001; n += 1000) {
-            int count1 = Algorithm1(n);
-            int count2 = Algorithm2(n);
-            int count3 = Algorithm3(n);
+            int count1 = Algorithm1(n); // Big O = O(n) => correct
+            int count2 = Algorithm2(n); // Big O = O(n^2) => correct
+            int count3 = Algorithm3(n); // Big O = O(n) => wrong, the correct is O(log n)]
             double time1 = Time(Algorithm1, n, 10);
             double time2 = Time(Algorithm2, n, 10);
             double time3 = Time(Algorithm3, n, 10);
@@ -64,10 +64,10 @@ public static class Algorithms {
     /// done the count is returned.
     /// </summary>
     /// <param name="size">the amount of work to do</param>
-    private static int Algorithm3(int size) {
+    private static int Algorithm3(int size) { // 10
         var count = 0;
         var start = 0;
-        var end = size - 1;
+        var end = size - 1; // 9
         while (start <= end) {
             var middle = (end - start) / 2 + start;
             start = middle + 1;
