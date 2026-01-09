@@ -1,3 +1,6 @@
+using System.Collections.Generic;
+using System.Linq;
+
 public static class Arrays
 {
     /// <summary>
@@ -37,9 +40,23 @@ public static class Arrays
     /// </summary>
     public static void RotateListRight(List<int> data, int amount)
     {
-        // TODO Problem 2 Start
+        // Problem 2 Start
         // Remember: Using comments in your program, write down your process for solving this problem
         // step by step before you write the code. The plan should be clear enough that it could
         // be implemented by another person.
+
+        // define the last index
+        int lastIndex = data.Count - 1;
+
+        // loop the given amount of times
+        for (int position = amount - 1; position >= 0; position--)
+        {
+            // loop from the end of the list
+            for (int index = lastIndex; index > 0; index--)
+            {
+                // shifts the amounts to the left
+                (data[index], data[index - 1]) = (data[index - 1], data[index]);
+            }
+        }
     }
 }
