@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 public class SimpleStack
 {
-    public static void Main()
+    public static void Run()
     {
         Console.WriteLine("\n======================\nSimple Stack\n======================");
 
