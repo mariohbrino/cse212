@@ -11,24 +11,44 @@ public class CustomerService {
         // Test Cases
 
         // Test 1
-        // Scenario: 
-        // Expected Result: 
+        // Scenario: Add a customer to the queue and serve the customer
+        // Expected Result: One customer added to the queue served and served
         Console.WriteLine("Test 1");
+        var cs = new CustomerService(2);
+        cs.AddNewCustomer();
+        cs.ServeCustomer();
 
-        // Defect(s) Found: 
+        // Defect(s) Found: the customer should be delete after getting the information
 
         Console.WriteLine("=================");
 
         // Test 2
-        // Scenario: 
-        // Expected Result: 
+        // Scenario: Add 3 customers to the queue and serve them
+        // Expected Result: This should only serve 2 customers and hit the limit
         Console.WriteLine("Test 2");
 
-        // Defect(s) Found: 
+        // Defect(s) Found: check if the queue list is equal or greater than the max size
+
+        var cs2 = new CustomerService(2);
+
+        cs2.AddNewCustomer();
+        cs2.AddNewCustomer();
+        cs2.AddNewCustomer();
+        cs2.ServeCustomer();
+        cs2.ServeCustomer();
+        cs2.ServeCustomer();
 
         Console.WriteLine("=================");
 
-        // Add more Test Cases As Needed Below
+        // Test 3
+        // Scenario: Can I server a customer that's not in the queue?
+        // Expected Result: A message of no customer in the queue.
+        Console.WriteLine("Test 3");
+
+        // Defect(s) Found: check if the queue size is less and equal to zero, then print message of empty queue
+
+        var cs3 = new CustomerService(1);
+        cs3.ServeCustomer();
     }
 
     private readonly List<Customer> _queue = new();
@@ -67,7 +87,7 @@ public class CustomerService {
     /// </summary>
     private void AddNewCustomer() {
         // Verify there is room in the service queue
-        if (_queue.Count > _maxSize) {
+        if (_queue.Count >= _maxSize) { // the count must be greater and equal than max size
             Console.WriteLine("Maximum Number of Customers in Queue.");
             return;
         }
@@ -88,9 +108,17 @@ public class CustomerService {
     /// Dequeue the next customer and display the information.
     /// </summary>
     private void ServeCustomer() {
-        _queue.RemoveAt(0);
-        var customer = _queue[0];
-        Console.WriteLine(customer);
+        if (_queue.Count <= 0) // must check if the queue list size is less or equal than 0
+        {
+            Console.WriteLine("No Customers in the queue"); // display message of no customer in the queue
+        }
+        else
+        {
+            var customer = _queue[0];
+            _queue.RemoveAt(0); // the customer should be delete after getting the information
+            Console.WriteLine(customer);
+        }
+
     }
 
     /// <summary>
