@@ -10,7 +10,7 @@
         queue.Enqueue(100);
         var value = queue.Dequeue();
         Console.WriteLine(value);
-        // Defect(s) Found: 100
+        // Defect(s) Found: getting and removing the item from 1 instead of 0 position
 
         Console.WriteLine("------------");
 
@@ -28,7 +28,8 @@
         Console.WriteLine(value);
         value = queue.Dequeue();
         Console.WriteLine(value);
-        // Defect(s) Found: 200, 300, 400
+
+        // Defect(s) Found: overriding items on the index position 0 instead of adding to the list
 
         Console.WriteLine("------------");
 
