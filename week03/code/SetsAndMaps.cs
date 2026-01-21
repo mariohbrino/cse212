@@ -63,7 +63,11 @@ public static class SetsAndMaps
         foreach (var line in File.ReadLines(filename))
         {
             var fields = line.Split(",");
-            // TODO Problem 2 - ADD YOUR CODE HERE
+            string degree = fields[3];
+            if (!degrees.TryGetValue(degree, out int value))
+                degrees.Add(degree, 1);
+            else
+                degrees[degree] = ++value;
         }
 
         return degrees;
