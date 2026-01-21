@@ -147,11 +147,27 @@ public static class SetsAndMaps
 
         var featureCollection = JsonSerializer.Deserialize<FeatureCollection>(json, options);
 
-        // TODO Problem 5:
+        // Problem 5:
         // 1. Add code in FeatureCollection.cs to describe the JSON using classes and properties 
         // on those classes so that the call to Deserialize above works properly.
+
+        List<string> results = [];
+
+        DateTime today = DateTime.Today;
+
         // 2. Add code below to create a string out each place a earthquake has happened today and its magitude.
+        foreach (var feature in featureCollection.Features)
+        {
+            long unixTimeMilliseconds = feature.Properties.Time;
+            DateTime dateTimeFromMs = DateTimeOffset.FromUnixTimeMilliseconds(unixTimeMilliseconds).LocalDateTime;
+            
+            if (dateTimeFromMs >= today)
+            {
+                results.Add($"{feature.Properties.Place} - Mag {feature.Properties.Mag}");
+            }
+        }
+
         // 3. Return an array of these string descriptions.
-        return [];
+        return [.. results];
     }
 }
