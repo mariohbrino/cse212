@@ -21,6 +21,8 @@ public static class SetsAndMaps
     /// <param name="words">An array of 2-character words (lowercase, no duplicates)</param>
     public static string[] FindPairs(string[] words)
     {
+        // Problem 1 - ADD YOUR CODE HERE
+
         HashSet<string> matches = [];
         HashSet<string> existingWords = [];
         
@@ -63,6 +65,9 @@ public static class SetsAndMaps
         foreach (var line in File.ReadLines(filename))
         {
             var fields = line.Split(",");
+
+            // Problem 2 - ADD YOUR CODE HERE
+
             string degree = fields[3];
             if (!degrees.TryGetValue(degree, out int value))
                 degrees.Add(degree, 1);
@@ -91,7 +96,28 @@ public static class SetsAndMaps
     /// </summary>
     public static bool IsAnagram(string word1, string word2)
     {
-        // TODO Problem 3 - ADD YOUR CODE HERE
+        // Problem 3 - ADD YOUR CODE HERE
+
+        string word1Clean = word1.ToLower().Replace(" ", "");
+        string word2Clean = word2.ToLower().Replace(" ", "");
+
+        HashSet<char> contrast = [.. word1Clean];
+        HashSet<char> compare = [.. word2Clean];
+        HashSet<char> intersectResult = [.. contrast.Intersect(compare)];
+        HashSet<char> unionResult = [.. contrast.Union(compare)];
+
+        int word1Count = word1Clean.Length;
+        int word2Count = word2Clean.Length;
+        int contrastCount = contrast.Count;
+        int intersectCount = intersectResult.Count;
+        int unionCount = unionResult.Count;
+
+        if (word1Count == word2Count)
+        {
+            if (contrastCount == unionCount && contrastCount == intersectCount)
+                return true;
+            return intersectCount == word1Count;
+        }
         return false;
     }
 
