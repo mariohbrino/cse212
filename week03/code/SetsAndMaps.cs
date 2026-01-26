@@ -23,21 +23,26 @@ public static class SetsAndMaps
     {
         // Problem 1 - ADD YOUR CODE HERE
 
-        HashSet<string> set = [..words];
+        // Performance note:
+        // The code below has a single loop that goes through each line in the file
+        // once. There are no nested loops that makes the overall performance O(n).
+        // e.g.: O(n) loop
+
+        HashSet<string> set = [..words];    // O(n)
         HashSet<string> matches = [];
 
-        foreach (string word in words)
+        foreach (string word in words)      // O(n) loop
         {
-            if (word[0] == word[1])
+            if (word[0] == word[1])         // O(1)
                 continue;
 
-            string reversedWord = $"{word[1]}{word[0]}";
+            string reversedWord = $"{word[1]}{word[0]}";    // O(1)
 
-            if (set.Contains(reversedWord))
+            if (set.Contains(reversedWord)) // O(1) average
             {
                 matches.Add($"{word} & {reversedWord}");
-                set.Remove(word);
-                set.Remove(reversedWord);
+                set.Remove(word);           // O(1) average
+                set.Remove(reversedWord);   // O(1) average
             }
         }
 
@@ -57,6 +62,12 @@ public static class SetsAndMaps
     /// <returns>fixed array of divisors</returns>
     public static Dictionary<string, int> SummarizeDegrees(string filename)
     {
+
+        // Performance note:
+        // The code below has a single loop that goes through each line in the file
+        // once. There are no nested loops that makes the overall performance O(n).
+        // e.g.: O(n) loop
+
         var degrees = new Dictionary<string, int>();
         foreach (var line in File.ReadLines(filename))
         {
@@ -64,11 +75,11 @@ public static class SetsAndMaps
 
             // Problem 2 - ADD YOUR CODE HERE
 
-            string degree = fields[3];
-            if (!degrees.TryGetValue(degree, out int value))
-                degrees.Add(degree, 1);
+            string degree = fields[3];                  // O(1)
+            if (!degrees.TryGetValue(degree, out int value))    // O(1) average
+                degrees.Add(degree, 1);                 // O(1) average
             else
-                degrees[degree] = ++value;
+                degrees[degree] = ++value;              // O(1) average
         }
 
         return degrees;
@@ -94,29 +105,34 @@ public static class SetsAndMaps
     {
         // Problem 3 - ADD YOUR CODE HERE
 
-        word1 = word1.Replace(" ", "").ToLower();
-        word2 = word2.Replace(" ", "").ToLower();
+        // Performance note:
+        // The code below has a single loop that goes through each line in the file
+        // once. There are no nested loops that makes the overall performance O(n).
+        // e.g.: O(n) + O(m) => O(n) + O(n) = O(2n) = O(n)
+
+        word1 = word1.Replace(" ", "").ToLower();   // O(n) + O(n) = O(2n) = O(n)
+        word2 = word2.Replace(" ", "").ToLower();   // O(m) + O(m) = O(2m) = O(m)
 
         if (word1.Length != word2.Length)
             return false;
 
         Dictionary<char, int> frequency = [];
 
-        foreach (char letter in word1)
+        foreach (char letter in word1)              // O(n) loop
         {
-            if (frequency.TryGetValue(letter, out int value))
-                frequency[letter]++;
+            if (frequency.TryGetValue(letter, out int value))   // O(1) average
+                frequency[letter]++;                // O(1) average
             else
-                frequency[letter] = 1;
+                frequency[letter] = 1;              // O(1) average
         }
 
-        foreach (char letter in word2)
+        foreach (char letter in word2)              // O(m) loop
         {
-            if (!frequency.ContainsKey(letter))
+            if (!frequency.ContainsKey(letter))     // O(1) average
                 return false;
             
-            frequency[letter]--;
-            if (frequency[letter] < 0)
+            frequency[letter]--;                    // O(n) average
+            if (frequency[letter] < 0)              // O(1)
                 return false;
         }
 
@@ -139,6 +155,11 @@ public static class SetsAndMaps
     /// </summary>
     public static string[] EarthquakeDailySummary()
     {
+        // Performance note:
+        // The code below has a single loop that goes through each line in the file
+        // once. There are no nested loops that makes the overall performance O(n).
+        // e.g.: O(n) loop
+
         const string uri = "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_day.geojson";
         using var client = new HttpClient();
         using var getRequestMessage = new HttpRequestMessage(HttpMethod.Get, uri);
@@ -158,18 +179,18 @@ public static class SetsAndMaps
         DateTime today = DateTime.Today;
 
         // 2. Add code below to create a string out each place a earthquake has happened today and its magitude.
-        foreach (var feature in featureCollection.Features)
+        foreach (var feature in featureCollection.Features)         // O(n) loop
         {
-            long unixTimeMilliseconds = feature.Properties.Time;
+            long unixTimeMilliseconds = feature.Properties.Time;    // O(1)
             DateTime dateTimeFromMs = DateTimeOffset.FromUnixTimeMilliseconds(unixTimeMilliseconds).LocalDateTime;
             
             if (dateTimeFromMs >= today)
             {
-                results.Add($"{feature.Properties.Place} - Mag {feature.Properties.Mag}");
+                results.Add($"{feature.Properties.Place} - Mag {feature.Properties.Mag}");  // O(1) average
             }
         }
 
         // 3. Return an array of these string descriptions.
-        return [.. results];
+        return [.. results];    // O(n)
     }
 }
