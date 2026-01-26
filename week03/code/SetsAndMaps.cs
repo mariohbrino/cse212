@@ -94,27 +94,33 @@ public static class SetsAndMaps
     {
         // Problem 3 - ADD YOUR CODE HERE
 
-        string word1Clean = word1.ToLower().Replace(" ", "");
-        string word2Clean = word2.ToLower().Replace(" ", "");
+        word1 = word1.Replace(" ", "").ToLower();
+        word2 = word2.Replace(" ", "").ToLower();
 
-        HashSet<char> contrast = [.. word1Clean];
-        HashSet<char> compare = [.. word2Clean];
-        HashSet<char> intersectResult = [.. contrast.Intersect(compare)];
-        HashSet<char> unionResult = [.. contrast.Union(compare)];
+        if (word1.Length != word2.Length)
+            return false;
 
-        int word1Count = word1Clean.Length;
-        int word2Count = word2Clean.Length;
-        int contrastCount = contrast.Count;
-        int intersectCount = intersectResult.Count;
-        int unionCount = unionResult.Count;
+        Dictionary<char, int> frequency = [];
 
-        if (word1Count == word2Count)
+        foreach (char letter in word1)
         {
-            if (contrastCount == unionCount && contrastCount == intersectCount)
-                return true;
-            return intersectCount == word1Count;
+            if (frequency.TryGetValue(letter, out int value))
+                frequency[letter]++;
+            else
+                frequency[letter] = 1;
         }
-        return false;
+
+        foreach (char letter in word2)
+        {
+            if (!frequency.ContainsKey(letter))
+                return false;
+            
+            frequency[letter]--;
+            if (frequency[letter] < 0)
+                return false;
+        }
+
+        return true;
     }
 
     /// <summary>
