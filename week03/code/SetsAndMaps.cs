@@ -23,26 +23,22 @@ public static class SetsAndMaps
     {
         // Problem 1 - ADD YOUR CODE HERE
 
+        HashSet<string> set = [..words];
         HashSet<string> matches = [];
-        HashSet<string> existingWords = [];
-        
-        int lastIndex = words.Length - 1;
 
-        for (int index = 0; index < lastIndex; index++)
+        foreach (string word in words)
         {
-            string word = words[index];
-            char[] letters = word.ToCharArray();
-            string reverseWord = $"{letters[1]}{letters[0]}";
-
-            if (letters[0] == letters[1])
+            if (word[0] == word[1])
                 continue;
 
-            bool foundReverse = words.Contains(reverseWord);
-            bool wordAdded = existingWords.Add(word);
-            bool reverseWordAdded = existingWords.Add(reverseWord);
+            string reversedWord = $"{word[1]}{word[0]}";
 
-            if (foundReverse && wordAdded && reverseWordAdded)
-                matches.Add($"{word} & {reverseWord}");
+            if (set.Contains(reversedWord))
+            {
+                matches.Add($"{word} & {reversedWord}");
+                set.Remove(word);
+                set.Remove(reversedWord);
+            }
         }
 
         return [..matches];
