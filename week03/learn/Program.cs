@@ -12,5 +12,8 @@ public class Program
 
         Console.WriteLine("\n======================\nDuplicated Letter\n======================");
         DuplicatedLetter.Run();
+
+        Console.WriteLine("\n======================\nInterview\n======================");
+        Interview.Run();
     }
 }
