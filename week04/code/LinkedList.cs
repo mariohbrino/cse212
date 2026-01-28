@@ -32,7 +32,7 @@ public class LinkedList : IEnumerable<int>
     /// </summary>
     public void InsertTail(int value)
     {
-        // Problem 1
+        // Problem 1 - O(1)
 
         Node newNode = new(value);
         // If the list is empty, then point both head and tail to the new node.
@@ -79,13 +79,16 @@ public class LinkedList : IEnumerable<int>
     /// </summary>
     public void RemoveTail()
     {
-        // Problem 2
+        // Problem 2 - O(1)
 
+        // check if there is at least one element and empty the list
         if (_head == _tail)
         {
             _head = null;
             _tail = null;
         }
+        // in case tail is not empty remove reference of next node from second
+        // node to last and point tail to that node
         else if (_tail is not null)
         {
             _tail.Prev!.Next = null;
@@ -137,17 +140,21 @@ public class LinkedList : IEnumerable<int>
         // Problem 3
         Node? curr = _head;
         
-        while (curr is not null)
+        while (curr is not null) // O(n)
         {
+            // return earlier in case the list is empty
             if (_head is null && _tail is null)
                 return;
 
+            // check if there is at least one element and empty the list
             if (_head == _tail)
             {
                 curr = null;
                 _head = null;
                 _tail = null;
             }
+            // check if the current value is equal the given value
+            // then in case found remove it
             else if (curr.Data == value)
             {
                 curr.Next?.Prev = curr.Prev;
@@ -164,17 +171,22 @@ public class LinkedList : IEnumerable<int>
     /// </summary>
     public void Replace(int oldValue, int newValue)
     {
-        // Problem 4
+        // Problem 4 - O(n)
 
+        // set head as current node
         Node? curr = _head;
 
+        // in case current node is not empty loop through
         while (curr is not null)
         {
+            // check if current data is equal old value, in case it's a match
+            // then set current data to new value
             if (curr.Data == oldValue)
             {
                 curr.Data = newValue;
             }
 
+            // go to next node
             curr = curr.Next;
         }
     }
@@ -206,11 +218,15 @@ public class LinkedList : IEnumerable<int>
     /// </summary>
     public IEnumerable Reverse()
     {
-        // Problem 5
+        // Problem 5 - O(n)
+
+        // set tail as current node
         Node? curr = _tail;
 
+        // in case current node is not empty loop through
         while (curr is not null)
         {
+            // yield current data and set current to previous
             yield return curr.Data;
             curr = curr.Prev;
         }
