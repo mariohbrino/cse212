@@ -134,7 +134,29 @@ public class LinkedList : IEnumerable<int>
     /// </summary>
     public void Remove(int value)
     {
-        // TODO Problem 3
+        // Problem 3
+        Node? curr = _head;
+        
+        while (curr is not null)
+        {
+            if (_head is null && _tail is null)
+                return;
+
+            if (_head == _tail)
+            {
+                curr = null;
+                _head = null;
+                _tail = null;
+            }
+            else if (curr.Data == value)
+            {
+                curr.Next?.Prev = curr.Prev;
+                curr.Prev?.Next = curr.Next;
+                return;
+            }
+
+            curr = curr?.Next;
+        }
     }
 
     /// <summary>
