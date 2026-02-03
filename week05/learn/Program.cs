@@ -1,13 +1,16 @@
 using System;
 
-public class Program
+namespace Learn
 {
-    static void Main(string[] args)
+    public class Program
     {
-        Console.WriteLine("\n======================\nFactorial Recursion\n======================");
-        FactorialRecursion.Run();
+        static void Main(string[] args)
+        {
+            Console.WriteLine("\n======================\nFactorial Recursion\n======================");
+            FactorialRecursion.Run();
 
-        Console.WriteLine("\n======================\nFibonacci Recursion\n======================");
-        FibonacciRecursion.Run();
+            Console.WriteLine("\n======================\nFibonacci Recursion\n======================");
+            FibonacciRecursion.Run();
+        }
     }
 }
