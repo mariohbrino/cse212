@@ -24,3 +24,10 @@ To run only the test cases for a specific test case use a filter like the `FindP
 ```bash
 dotnet test week03/code --filter Name~FindPairs_ -l "console;verbosity=normal"
 ```
+
+## Adding New Projects to the Solution
+
+To add a new project to the solution, use the following command:
+```bash
+dotnet sln add path/to/your/project.csproj
+```
