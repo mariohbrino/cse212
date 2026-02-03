@@ -7,5 +7,7 @@ public class Program
         Console.WriteLine("\n======================\nFactorial Recursion\n======================");
         FactorialRecursion.Run();
 
+        Console.WriteLine("\n======================\nFibonacci Recursion\n======================");
+        FibonacciRecursion.Run();
     }
 }
