@@ -15,10 +15,16 @@ public static class Recursion
     public static int SumSquaresRecursive(int n, int result = 0)
     {
         // Start Problem 1
+
+        // In case number is 0 return default result or aggregated result
         if (n <= 0)
             return result;
         else
         {
+            // On each stack calculate the square of the number
+            // and sum with result. Then, decrease the given number
+            // and pass the result for each stack, this carries the
+            // sum result for each stack.
             int resultOfSquare = (int)Math.Pow(n, 2);
             result += resultOfSquare;
             return SumSquaresRecursive(n - 1, result);
@@ -47,6 +53,8 @@ public static class Recursion
     public static void PermutationsChoose(List<string> results, string letters, int size, string word = "")
     {
         // Start Problem 2
+
+        // Append word when word length is equal to size and return earlier.
         if (word.Length == size)
         {
             results.Add(word);
@@ -59,6 +67,9 @@ public static class Recursion
                 return;
             }
 
+            // Loop through the letters string getting the current letter.
+            // Then, pass the other letters as reference along concatenated
+            // word with current letter.
             for (int index = 0; index < letters.Length; index++)
             {
                 char currentLetter = letters[index];
@@ -124,13 +135,15 @@ public static class Recursion
 
         // Start Problem 3
 
+        // Initiate remember in case empty
         if (remember == null)
-            remember = new Dictionary<int, decimal>();
+            remember = [];
 
+        // Return remembered value
         if (remember.TryGetValue(s, out decimal value))
             return value;
 
-        // Solve using recursion
+        // Pass remember to all recursion and save ways into remember
         decimal ways = CountWaysToClimb(s - 1, remember) + CountWaysToClimb(s - 2, remember) + CountWaysToClimb(s - 3, remember);
         remember[s] = ways;
         return ways;
