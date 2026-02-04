@@ -12,12 +12,17 @@ public static class Recursion
     /// to identify a base case (terminating case).  If the value of
     /// n <= 0, just return 0.   A loop should not be used.
     /// </summary>
-    public static int SumSquaresRecursive(int n)
+    public static int SumSquaresRecursive(int n, int result = 0)
     {
         // Start Problem 1
         if (n <= 0)
-            return 0;
-        return n + SumSquaresRecursive((int)Math.Pow(n - 1, 2));
+            return result;
+        else
+        {
+            int resultOfSquare = (int)Math.Pow(n, 2);
+            result += resultOfSquare;
+            return SumSquaresRecursive(n - 1, result);
+        }
     }
 
     /// <summary>
@@ -117,10 +122,17 @@ public static class Recursion
         if (s == 3)
             return 4;
 
-        // TODO Start Problem 3
+        // Start Problem 3
+
+        if (remember == null)
+            remember = new Dictionary<int, decimal>();
+
+        if (remember.TryGetValue(s, out decimal value))
+            return value;
 
         // Solve using recursion
-        decimal ways = CountWaysToClimb(s - 1) + CountWaysToClimb(s - 2) + CountWaysToClimb(s - 3);
+        decimal ways = CountWaysToClimb(s - 1, remember) + CountWaysToClimb(s - 2, remember) + CountWaysToClimb(s - 3, remember);
+        remember[s] = ways;
         return ways;
     }
 
