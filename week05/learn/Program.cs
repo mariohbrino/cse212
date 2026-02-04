@@ -17,6 +17,9 @@ namespace Learn
 
             Console.WriteLine("\n======================\nBinarySearch Recursion\n======================");
             BinarySearchRecursion.Run();
+
+            Console.WriteLine("\n======================\nSumRecursion Recursion\n======================");
+            SumRecursion.Run();
         }
     }
 }
