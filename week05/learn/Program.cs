@@ -11,6 +11,9 @@ namespace Learn
 
             Console.WriteLine("\n======================\nFibonacci Recursion\n======================");
             FibonacciRecursion.Run();
+
+            Console.WriteLine("\n======================\nPermutation Recursion\n======================");
+            PermutationRecursion.Run();
         }
     }
 }
