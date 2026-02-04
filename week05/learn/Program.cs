@@ -14,6 +14,9 @@ namespace Learn
 
             Console.WriteLine("\n======================\nPermutation Recursion\n======================");
             PermutationRecursion.Run();
+
+            Console.WriteLine("\n======================\nBinarySearch Recursion\n======================");
+            BinarySearchRecursion.Run();
         }
     }
 }
