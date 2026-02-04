@@ -14,8 +14,10 @@ public static class Recursion
     /// </summary>
     public static int SumSquaresRecursive(int n)
     {
-        // TODO Start Problem 1
-        return 0;
+        // Start Problem 1
+        if (n <= 0)
+            return 0;
+        return n + SumSquaresRecursive((int)Math.Pow(n - 1, 2));
     }
 
     /// <summary>
