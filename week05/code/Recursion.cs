@@ -198,12 +198,52 @@ public static class Recursion
         if (currPath == null) {
             currPath = new List<ValueTuple<int, int>>();
         }
-        
-        // currPath.Add((1,2)); // Use this syntax to add to the current path
 
-        // TODO Start Problem 5
-        // ADD CODE HERE
+        // Start Problem 5
+        bool isValid = maze.IsValidMove(currPath, x, y);
 
-        // results.Add(currPath.AsString()); // Use this to add your path to the results array keeping track of complete maze solutions when you find the solution.
+        if (isValid)
+        {
+            currPath.Add((x, y));
+
+            bool isEnded = maze.IsEnd(x, y);
+            if (isEnded)
+            {
+                if (results.Contains(currPath.AsString()))
+                    return;
+                results.Add(currPath.AsString());
+                currPath = [];
+                currPath.Add((0, 0));
+                SolveMaze(results, maze, 0, 1, currPath);
+            }
+
+            // MoveLeft
+            if (maze.IsValidMove(currPath, x - 1, y))
+            {
+                x--;
+                SolveMaze(results, maze, x, y, currPath);
+            }
+
+            // MoveRight
+            if (maze.IsValidMove(currPath, x + 1, y))
+            {
+                x++;
+                SolveMaze(results, maze, x, y, currPath);
+            }
+
+            // MoveDown
+            if (maze.IsValidMove(currPath, x, y + 1))
+            {
+                y++;
+                SolveMaze(results, maze, x, y, currPath);
+            }
+
+            // MoveUp
+            if (maze.IsValidMove(currPath, x, y - 1))
+            {
+                y--;
+                SolveMaze(results, maze, x, y, currPath);
+            }
+        }
     }
 }
