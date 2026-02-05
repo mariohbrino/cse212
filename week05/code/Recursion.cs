@@ -162,9 +162,29 @@ public static class Recursion
     /// Using recursion, insert all possible binary strings for a given pattern into the results list.  You might find 
     /// some of the string functions like IndexOf and [..X] / [X..] to be useful in solving this problem.
     /// </summary>
-    public static void WildcardBinary(string pattern, List<string> results)
+    public static void WildcardBinary(string pattern, List<string> results, char wildcard = '*')
     {
-        // TODO Start Problem 4
+        // Start Problem 4
+
+        // try to get the first occurrence of the wildcard, this should return the index number
+        // or -1 in case not found, then add the pattern to results
+        int index = pattern.IndexOf(wildcard);
+        if (index == -1)
+        {
+            results.Add(pattern);
+        }
+        else
+        {
+            // convert the pattern into a list of chars, then replace the wildcard with both
+            // binary cases by calling a recursion.
+            char[] patternList = pattern.ToCharArray();
+        
+            patternList[index] = '1';
+            WildcardBinary(new string(patternList), results);
+
+            patternList[index] = '0';
+            WildcardBinary(new string(patternList), results);
+        }
     }
 
     /// <summary>
