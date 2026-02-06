@@ -1,3 +1,12 @@
-What are two potential pitfalls of using recursion? How could you overcome these challenges (either by using an alternative technique or by doing something to help the recursion)?
+What are two potential pitfalls of using recursion? How could you overcome
+these challenges (either by using an alternative technique or by doing
+something to help the recursion)?
 
-A: I believe there are 2 pitfalls that must be observed to avoid complications with recursion. The first pitfall would be a infinity loop that causes a stack overflow, where the function calls itself without a breakpoint, this can be handled by applying the recursion rules using a small problem and a base case to stop the loop. The second pitfall would be performance that also causes a stack overflow, when multiple calls to a previous problem are executed, this can be handled by memoization where it stores, search, and returns a value of a previous operation to avoid additional recursion calls.
+A: I believe there are 2 pitfalls that must be observed to avoid complications
+with recursion. The first pitfall would be a infinity loop that causes a stack
+overflow, where the function calls itself without a breakpoint, this can be
+handled by applying the recursion rules using a small problem and a base case
+to stop the loop. The second pitfall would be performance that also can cause
+a stack overflow, when multiple calls to a previous problem are executed, this
+can be handled by memoization where it stores, search, and returns a value of
+a previous operation to avoid additional recursion calls.
