@@ -212,37 +212,34 @@ public static class Recursion
                 if (results.Contains(currPath.AsString()))
                     return;
                 results.Add(currPath.AsString());
-                currPath = [];
-                currPath.Add((0, 0));
-                SolveMaze(results, maze, 0, 1, currPath);
             }
 
             // MoveLeft
             if (maze.IsValidMove(currPath, x - 1, y))
             {
-                x--;
-                SolveMaze(results, maze, x, y, currPath);
+                List<ValueTuple<int, int>> newPath = [..currPath];
+                SolveMaze(results, maze, x - 1, y, newPath);
             }
 
             // MoveRight
             if (maze.IsValidMove(currPath, x + 1, y))
             {
-                x++;
-                SolveMaze(results, maze, x, y, currPath);
+                List<ValueTuple<int, int>> newPath = [..currPath];
+                SolveMaze(results, maze, x + 1, y, newPath);
             }
 
             // MoveDown
             if (maze.IsValidMove(currPath, x, y + 1))
             {
-                y++;
-                SolveMaze(results, maze, x, y, currPath);
+                List<ValueTuple<int, int>> newPath = [..currPath];
+                SolveMaze(results, maze, x, y + 1, newPath);
             }
 
             // MoveUp
             if (maze.IsValidMove(currPath, x, y - 1))
             {
-                y--;
-                SolveMaze(results, maze, x, y, currPath);
+                List<ValueTuple<int, int>> newPath = [..currPath];
+                SolveMaze(results, maze, x, y - 1, newPath);
             }
         }
     }
