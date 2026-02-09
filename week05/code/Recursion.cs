@@ -191,56 +191,50 @@ public static class Recursion
     /// Use recursion to insert all paths that start at (0,0) and end at the
     /// 'end' square into the results list.
     /// </summary>
-    public static void SolveMaze(List<string> results, Maze maze, int x = 0, int y = 0, List<ValueTuple<int, int>>? currPath = null)
+    public static void SolveMaze(
+        List<string> results,
+        Maze maze, int x = 0, int y = 0,
+        List<ValueTuple<int, int>>? currPath = null,
+        string? direction = default
+    )
     {
         // If this is the first time running the function, then we need
         // to initialize the currPath list.
         if (currPath == null) {
-            currPath = new List<ValueTuple<int, int>>();
+            currPath = [];
         }
 
         // Start Problem 5
-        bool isValid = maze.IsValidMove(currPath, x, y);
 
-        if (isValid)
+        // Check if the current move is valid
+        bool isValidMove = maze.IsValidMove(currPath, x, y);
+
+        // Only proceed if the move is valid
+        if (isValidMove)
         {
             currPath.Add((x, y));
 
+            // Check if we reached the end
             bool isEnded = maze.IsEnd(x, y);
+
+            // If we reached the end, add the path to results if not already present
             if (isEnded)
             {
                 if (results.Contains(currPath.AsString()))
                     return;
                 results.Add(currPath.AsString());
             }
-
-            // MoveLeft
-            if (maze.IsValidMove(currPath, x - 1, y))
+            else
             {
-                List<ValueTuple<int, int>> newPath = [..currPath];
-                SolveMaze(results, maze, x - 1, y, newPath);
+                // Explore all four directions with the same path
+                SolveMaze(results, maze, x + 1, y, currPath, "right"); // Move right
+                SolveMaze(results, maze, x - 1, y, currPath, "left"); // Move left
+                SolveMaze(results, maze, x, y + 1, currPath, "down"); // Move down
+                SolveMaze(results, maze, x, y - 1, currPath, "up"); // Move up
             }
 
-            // MoveRight
-            if (maze.IsValidMove(currPath, x + 1, y))
-            {
-                List<ValueTuple<int, int>> newPath = [..currPath];
-                SolveMaze(results, maze, x + 1, y, newPath);
-            }
-
-            // MoveDown
-            if (maze.IsValidMove(currPath, x, y + 1))
-            {
-                List<ValueTuple<int, int>> newPath = [..currPath];
-                SolveMaze(results, maze, x, y + 1, newPath);
-            }
-
-            // MoveUp
-            if (maze.IsValidMove(currPath, x, y - 1))
-            {
-                List<ValueTuple<int, int>> newPath = [..currPath];
-                SolveMaze(results, maze, x, y - 1, newPath);
-            }
+            // Backtrack: remove current position after exploring all paths
+            currPath.RemoveAt(currPath.Count - 1);
         }
     }
 }
