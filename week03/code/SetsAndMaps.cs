@@ -184,7 +184,7 @@ public static class SetsAndMaps
             long unixTimeMilliseconds = feature.Properties.Time;    // O(1)
             DateTime dateTimeFromMs = DateTimeOffset.FromUnixTimeMilliseconds(unixTimeMilliseconds).LocalDateTime;
             
-            if (dateTimeFromMs >= today)
+            if (dateTimeFromMs >= today && results.Count <= 5)
             {
                 results.Add($"{feature.Properties.Place} - Mag {feature.Properties.Mag}");  // O(1) average
             }
