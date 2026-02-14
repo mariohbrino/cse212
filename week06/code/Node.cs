@@ -77,9 +77,34 @@ public class Node
         }
     }
 
-    public int GetHeight()
+    public int GetHeight(Node? node = null, int height = 0, int leftCounter = 0, int rightCounter = 0)
     {
-        // TODO Start Problem 4
-        return 0; // Replace this line with the correct return statement(s)
+        // Start Problem 4
+
+        if (node is null)
+        {
+            node = this;
+            height++;
+        }
+
+        if (node is null)
+            return 0;
+
+        if (node.Right is not null)
+        {
+            rightCounter = GetHeight(node.Right, height, leftCounter, rightCounter + 1);
+        }
+
+        if (node.Left is not null)
+        {
+            leftCounter = GetHeight(node.Left, height, leftCounter + 1, rightCounter);
+        }
+
+        if (leftCounter < rightCounter)
+            height = rightCounter;
+        else
+            height = leftCounter;
+
+        return height;
     }
 }
