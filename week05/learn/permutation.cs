@@ -21,7 +21,7 @@ namespace Learn
         private static HashSet<string> Permutations(string letters, string word = "")
         {
             HashSet<string> result = [];
-            
+
             // Try adding each of the available letters
             // to the 'word' and add up all the
             // resulting permutations.
@@ -64,7 +64,7 @@ namespace Learn
                 Console.WriteLine($"Execution Time: {executionTime} ms");
 
                 bool allMatch = results.SetEquals(expected);
-                
+
                 if (allMatch)
                     Console.ForegroundColor = ConsoleColor.Green;
                 else
@@ -73,14 +73,14 @@ namespace Learn
                 Console.WriteLine($"Result count: {results.Count}, Expected count: {expected.Count}");
                 Console.WriteLine($"All permutations match: {allMatch}");
                 Console.ResetColor();
-                
+
                 var permList = results.ToList();
-                string permutationsText = permList.Count > 1 
+                string permutationsText = permList.Count > 1
                     ? string.Join(", ", permList.Take(permList.Count - 1)) + ", and " + permList.Last()
                     : permList.FirstOrDefault() ?? "";
                 Console.WriteLine($"Permutations: {permutationsText}");
             }
         }
     }
-    
+
 }

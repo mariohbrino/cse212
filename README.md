@@ -31,3 +31,16 @@ To add a new project to the solution, use the following command:
 ```bash
 dotnet sln add path/to/your/project.csproj
 ```
+
+## Code Formatting
+
+Dotnet provides a built-in code formatter that can be used to ensure that your code is consistently
+formatted. You can run the formatter from the command line.
+
+> The editor is set to automatically format your code when you save, but you can also run the formatter
+manually to ensure that all code is formatted correctly.
+
+To apply formatting to all code, use the following command:
+```bash
+dotnet format
+```

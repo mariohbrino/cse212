@@ -178,7 +178,7 @@ public static class Recursion
             // convert the pattern into a list of chars, then replace the wildcard with both
             // binary cases by calling a recursion.
             char[] patternList = pattern.ToCharArray();
-        
+
             patternList[index] = '1';
             WildcardBinary(new string(patternList), results);
 
@@ -200,7 +200,8 @@ public static class Recursion
     {
         // If this is the first time running the function, then we need
         // to initialize the currPath list.
-        if (currPath == null) {
+        if (currPath == null)
+        {
             currPath = [];
         }
 

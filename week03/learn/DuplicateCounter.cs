@@ -34,7 +34,7 @@
             if (!members.Add(number))
                 duplicatedCount++;
         }
-        
+
         return duplicatedCount;
     }
 }

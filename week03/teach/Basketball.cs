@@ -23,7 +23,8 @@ public class Basketball
         reader.TextFieldType = FieldType.Delimited;
         reader.SetDelimiters(",");
         reader.ReadFields(); // ignore header row
-        while (!reader.EndOfData) {
+        while (!reader.EndOfData)
+        {
             string[] fields = reader.ReadFields()!;
             string playerId = fields[0];
             int points = int.Parse(fields[8]);

@@ -28,7 +28,7 @@ public static class SetsAndMaps
         // once. There are no nested loops that makes the overall performance O(n).
         // e.g.: O(n) loop
 
-        HashSet<string> set = [..words];    // O(n)
+        HashSet<string> set = [.. words];    // O(n)
         HashSet<string> matches = [];
 
         foreach (string word in words)      // O(n) loop
@@ -46,7 +46,7 @@ public static class SetsAndMaps
             }
         }
 
-        return [..matches];
+        return [.. matches];
     }
 
     /// <summary>
@@ -130,7 +130,7 @@ public static class SetsAndMaps
         {
             if (!frequency.ContainsKey(letter))     // O(1) average
                 return false;
-            
+
             frequency[letter]--;                    // O(n) average
             if (frequency[letter] < 0)              // O(1)
                 return false;
@@ -183,7 +183,7 @@ public static class SetsAndMaps
         {
             long unixTimeMilliseconds = feature.Properties.Time;    // O(1)
             DateTime dateTimeFromMs = DateTimeOffset.FromUnixTimeMilliseconds(unixTimeMilliseconds).LocalDateTime;
-            
+
             if (dateTimeFromMs >= today && results.Count <= 5)
             {
                 results.Add($"{feature.Properties.Place} - Mag {feature.Properties.Mag}");  // O(1) average

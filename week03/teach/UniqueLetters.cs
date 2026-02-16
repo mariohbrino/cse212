@@ -1,5 +1,7 @@
-﻿public static class UniqueLetters {
-    public static void Run() {
+﻿public static class UniqueLetters
+{
+    public static void Run()
+    {
         var test1 = "abcdefghjiklmnopqrstuvwxyz"; // Expect True because all letters unique
         Console.WriteLine(AreUniqueLetters(test1));
 
@@ -13,7 +15,8 @@
     /// <summary>Determine if there are any duplicate letters in the text provided</summary>
     /// <param name="text">Text to check for duplicate letters</param>
     /// <returns>true if all letters are unique, otherwise false</returns>
-    private static bool AreUniqueLetters(string text) {
+    private static bool AreUniqueLetters(string text)
+    {
         // Problem 1 - Replace the O(n^2) algorithm to use sets and O(n) efficiency
 
         // The function checks an string to check if there are duplicates letters
@@ -22,7 +25,8 @@
 
         HashSet<char> letters = [];
 
-        for (var index = 0; index < text.Length; ++index) {
+        for (var index = 0; index < text.Length; ++index)
+        {
             // original
 
             // for (var j = 0; j < text.Length; ++j) {
@@ -32,7 +36,7 @@
             // }
 
             // solution 1
-            
+
             // get the letter on the given index
             // char letter = text[index];
 

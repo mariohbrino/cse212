@@ -53,7 +53,7 @@ public class PriorityQueueTests
     public void TestPriorityQueue_Empty()
     {
         var priorityQueue = new PriorityQueue();
-        
+
         try
         {
             priorityQueue.Dequeue();

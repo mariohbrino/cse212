@@ -139,7 +139,7 @@ public class LinkedList : IEnumerable<int>
     {
         // Problem 3
         Node? curr = _head;
-        
+
         while (curr is not null) // O(n)
         {
             // return earlier in case the list is empty
@@ -250,8 +250,10 @@ public class LinkedList : IEnumerable<int>
     }
 }
 
-public static class IntArrayExtensionMethods {
-    public static string AsString(this IEnumerable array) {
+public static class IntArrayExtensionMethods
+{
+    public static string AsString(this IEnumerable array)
+    {
         return "<IEnumerable>{" + string.Join(", ", array.Cast<int>()) + "}";
     }
 }
