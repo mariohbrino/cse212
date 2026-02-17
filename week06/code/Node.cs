@@ -71,40 +71,31 @@ public class Node
         else
         {
             if (node.Right is null)
-                return false;            
+                return false;
             else
                 return Contains(value, node.Right);
         }
     }
 
-    public int GetHeight(Node? node = null, int height = 0, int leftCounter = 0, int rightCounter = 0)
+    public int GetHeight(int leftHeight = 0, int rightHeight = 0)
     {
         // Start Problem 4
 
-        if (node is null)
+        if (Left is null && Right is null)
         {
-            node = this;
-            height++;
+            return 1;
         }
 
-        if (node is null)
-            return 0;
-
-        if (node.Right is not null)
+        if (Left is not null)
         {
-            rightCounter = GetHeight(node.Right, height, leftCounter, rightCounter + 1);
+            leftHeight = Left.GetHeight();
         }
 
-        if (node.Left is not null)
+        if (Right is not null)
         {
-            leftCounter = GetHeight(node.Left, height, leftCounter + 1, rightCounter);
+            rightHeight = Right.GetHeight();
         }
 
-        if (leftCounter < rightCounter)
-            height = rightCounter;
-        else
-            height = leftCounter;
-
-        return height;
+        return leftHeight > rightHeight ? leftHeight + 1 : rightHeight + 1;
     }
 }

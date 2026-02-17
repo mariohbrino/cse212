@@ -50,14 +50,20 @@ public static class Trees
     {
         // Start Problem 5
 
-        if (sortedNumbers.Length <= 0)
+        // Base case: if first > last, there are no elements to insert
+        if (first > last)
             return;
 
-        List<int> newNumbers = [..sortedNumbers];
-        int middle = (first + last) / 2;
-        bst.Insert(newNumbers[middle]);
-        newNumbers.RemoveAt(middle);
+        // Calculate the middle of the given range between last and first
+        int middle = (last + first) / 2;
 
-        InsertMiddle([..newNumbers], 0, newNumbers.Count - 1, bst);
+        // Insert the middle between the given range
+        bst.Insert(sortedNumbers[middle]);
+
+        // Recursion from left range, between first (0) and middle less 1
+        InsertMiddle(sortedNumbers, first, middle - 1, bst);
+
+        // Recursion from right range, between middle plus 1 and last
+        InsertMiddle(sortedNumbers, middle + 1, last, bst);
     }
 }
